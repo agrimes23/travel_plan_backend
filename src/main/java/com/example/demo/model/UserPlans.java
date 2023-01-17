@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.Id;
 
@@ -16,14 +17,13 @@ public class UserPlans {
     @GeneratedValue
     private final UUID id;
 
-    @Column(name = "username", nullable = false)
     private final String username;
     private final String password;
 
     @OneToMany (mappedBy = "UserPlans", cascade = CascadeType.ALL)
     private final List<TripPlan> tripPlans;
 
-    public UserPlans(UUID id, String username, String password, List<TripPlan> tripPlans) {
+    public UserPlans(@JsonProperty("id") UUID id, @JsonProperty("username") String username, @JsonProperty("password") String password, @JsonProperty("tripPlans")List<TripPlan> tripPlans) {
         this.id = id;
         this.username= username;
         this.password = password;
@@ -43,33 +43,31 @@ public class UserPlans {
         return tripPlans;
     }
 
-    @Entity
-    @Table(name="trip_plans")
+
     public class TripPlan {
 
+        private final List<Hotel> hotel;
+        private final List<Transport> transport;
+        private final List<Activity> activity;
+        private final List<Food> food;
 
-        private final Hotel hotel;
-        private final Transport transport;
-        private final Activity activity;
-        private final Food food;
-
-        public TripPlan(Hotel hotel, Transport transport, Activity activity, Food food) {
+        public TripPlan(@JsonProperty("hotel")List<Hotel> hotel, @JsonProperty("transport") List<Transport> transport, @JsonProperty("activity") List<Activity> activity, @JsonProperty("food") List<Food> food) {
             this.hotel = hotel;
             this.transport = transport;
             this.activity = activity;
             this.food = food;
         }
 
-        public Hotel getHotel() {
+        public List<Hotel> getHotel() {
             return hotel;
         }
-        public Transport getTransport() {
+        public List<Transport> getTransport() {
             return transport;
         }
-        public Activity getActivity() {
+        public List<Activity> getActivity() {
             return activity;
         }
-        public Food getFood() {
+        public List<Food> getFood() {
             return food;
         }
 
@@ -82,7 +80,7 @@ public class UserPlans {
             private final String checkoutTime;
             private final String siteLink;
 
-            public Hotel(String hotelName, String stayDate, Float price, String checkinTime, String checkoutTime, String siteLink) {
+            public Hotel(@JsonProperty("hotelName") String hotelName, @JsonProperty("stayDate") String stayDate, @JsonProperty("price") Float price, @JsonProperty("checkinTime") String checkinTime, @JsonProperty("checkoutTime") String checkoutTime, @JsonProperty("siteLink") String siteLink) {
                 this.hotelName = hotelName;
                 this.stayDate = stayDate;
                 this.price = price;
@@ -126,7 +124,7 @@ public class UserPlans {
             private final String arrivalTime;
             private final String siteLink;
 
-            public Transport(String transportCompany, String type, String deptDate, String arrivalDate, Float price, String boardTime, String arrivalTime, String siteLink) {
+            public Transport(@JsonProperty("transportCompany") String transportCompany, @JsonProperty("type") String type, @JsonProperty("deptDate") String deptDate, @JsonProperty("arrivalDate") String arrivalDate, @JsonProperty("price") Float price, @JsonProperty("boardTime") String boardTime, @JsonProperty("arrivalTime") String arrivalTime, @JsonProperty("siteLink") String siteLink) {
                 this.transportCompany = transportCompany;
                 this.type = type;
                 this.deptDate = deptDate;
@@ -172,7 +170,7 @@ public class UserPlans {
             private final String endTime;
             private final String siteLink;
 
-            public Activity(String name, String startDate, Float price, String startTime, String endTime, String siteLink) {
+            public Activity(@JsonProperty("name") String name, @JsonProperty("startDate") String startDate, @JsonProperty("price") Float price, @JsonProperty("startTime") String startTime, @JsonProperty("endTime") String endTime, @JsonProperty("siteLink") String siteLink) {
                 this.name = name;
                 this.startDate = startDate;
                 this.price = price;
@@ -207,7 +205,7 @@ public class UserPlans {
             private final String rezTime;
             private final String siteLink;
 
-            public Food(String name, String date, Float price, String rezTime, String siteLink) {
+            public Food(@JsonProperty("name") String name, @JsonProperty("date") String date, @JsonProperty("price") Float price, @JsonProperty("rezTime") String rezTime, @JsonProperty("siteLink") String siteLink) {
                 this.name = name;
                 this.date = date;
                 this.price = price;
@@ -232,8 +230,5 @@ public class UserPlans {
             }
 
         }
-
-
-
     }
 }
