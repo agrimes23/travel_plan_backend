@@ -16,7 +16,7 @@ public class UserPlans {
     @GeneratedValue
     private final UUID id;
 
-    @Column(username = "username", nullable = false)
+    @Column(name = "username", nullable = false)
     private final String username;
     private final String password;
 
