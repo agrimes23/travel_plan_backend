@@ -1,6 +1,7 @@
 package com.example.demo.dao;
 
 import com.example.demo.model.UserPlans;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -31,11 +32,25 @@ public class FakeUserPlansDataAccessService implements UserPlanDao{
 
     @Override
     public int deleteUserPlansById(UUID id) {
-        return 0;
+        Optional<UserPlans> userPlansMaybe = selectUserPlansById(id);
+        if(userPlansMaybe.isEmpty()) {
+            return 0;
+        }
+        DB.remove(userPlansMaybe.get());
+        return 1;
     }
 
     @Override
-    public int updateUserPlanById(UUID id, UserPlans userPlans) {
-        return 0;
+    public int updateUserPlanById(UUID id, UserPlans update) {
+        return selectUserPlansById(id)
+                .map(userPlans -> {
+                    int indexOfUserPlanToUpdate = DB.indexOf(userPlans);
+                    if(indexOfUserPlanToUpdate >= 0) {
+                        DB.set(indexOfUserPlanToUpdate, new UserPlans(id, update.getUsername(), update.getPassword(), update.getTripPlans()));
+                        return 1;
+                    }
+                    return 0;
+                })
+                .orElse(0);
     }
 }

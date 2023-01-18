@@ -29,10 +29,19 @@ public class UserPlansController {
         return userPlansService.getAllUserPlans();
     }
 
-//    @GetMapping(path="{id}")
-//    public UserPlans getUserPlanById(@PathVariable("id") UUID id) {
-//        return userPlansService.getUserPlanById(id)
-//            .orElse(null);
-//    }
+    @GetMapping(path="{id}")
+    public UserPlans getUserPlanById(@PathVariable("id") UUID id) {
+        return userPlansService.getUserPlanById(id)
+            .orElse(null);
+    }
 
+    @DeleteMapping(path = "{id}")
+    public void deleteUserPlansById(@PathVariable("id") UUID id) {
+        userPlansService.deleteUserPlans(id);
+    }
+
+    @PutMapping(path= "{id}")
+    public void updateUserPlans(@PathVariable("id") UUID id, @RequestBody UserPlans userPlansToUpdate) {
+        userPlansService.updateUserPlans(id, userPlansToUpdate);
+    }
 }

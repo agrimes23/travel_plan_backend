@@ -32,4 +32,11 @@ public class UserPlansService {
         return userPlanDao.selectUserPlansById(id);
     }
 
+    public int deleteUserPlans(UUID id) {
+        return userPlanDao.deleteUserPlansById(id);
+    }
+
+    public int updateUserPlans(UUID id, UserPlans newUserPlans) {
+        return userPlanDao.updateUserPlanById(id, newUserPlans);
+    }
 }
