@@ -16,7 +16,7 @@ public class UserPlansService {
     private final UserPlanDao userPlanDao;
 
     @Autowired
-    public UserPlansService(@Qualifier("fakeDao") UserPlanDao userPlanDao) {
+    public UserPlansService(@Qualifier("postgres") UserPlanDao userPlanDao) {
         this.userPlanDao = userPlanDao;
     }
 
