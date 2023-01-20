@@ -26,54 +26,64 @@ public class UserplanDataAccessService implements UserPlanDao{
     }
 
     @Override
-    public List<UserPlans> selectAllUserPlans() {
-        final String sql = "SELECT id, username FROM userPlans, ";
-        jdbcTemplate.query(sql, (resultSet, i) -> {
-            return new UserPlans(
-                    UUID.fromString(resultSet.getString("id")),
-                    resultSet.getString("username"),
-                    resultSet.getString("password"),
-
-                    )
-
-        });
-        return List.of(new UserPlans(UUID.randomUUID(), "FROM POSTGRES DB", "FROM POSTGRES DB", List<TripPlan>(
-                List.of(
-                        List.of(new Hotel (
-                                "FROM POSTGRES DB",
-                                "FROM POSTGRES DB",
-                                null,
-                                "FROM POSTGRES DB",
-                                "FROM POSTGRES DB",
-                                "FROM POSTGRES DB"
-                        )),
-                        List.of(new Transport(
-                                "FROM POSTGRES DB",
-                                "FROM POSTGRES DB",
-                                "FROM POSTGRES DB",
-                                "FROM POSTGRES DB",
-                                null,
-                                "FROM POSTGRES DB",
-                                "FROM POSTGRES DB",
-                                "FROM POSTGRES DB"
-                        )),
-                        List.of(new Activity(
-                                "FROM POSTGRES DB",
-                                "FROM POSTGRES DB",
-                                null,
-                                "FROM POSTGRES DB",
-                                "FROM POSTGRES DB",
-                                "FROM POSTGRES DB"
-                        )),
-                        List.of(new Food(
-                                "FROM POSTGRES DB",
-                                "FROM POSTGRES DB",
-                                null,
-                                "FROM POSTGRES DB",
-                                "FROM POSTGRES DB"
-                        )))
-        ))));
+    public int insertUserPlans(UserPlans userplans) {
+        return UserPlanDao.super.insertUserPlans(userplans);
     }
+
+    @Override
+    public List<UserPlans> selectAllUserPlans() {
+        return null;
+    }
+
+//    @Override
+//    public List<UserPlans> selectAllUserPlans() {
+//        final String sql = "SELECT id, username FROM userPlans, ";
+//        jdbcTemplate.query(sql, (resultSet, i) -> {
+//            return new UserPlans(
+//                    UUID.fromString(resultSet.getString("id")),
+//                    resultSet.getString("username"),
+//                    resultSet.getString("password"),
+//
+//                    )
+//
+//        });
+//        return List.of(new UserPlans(UUID.randomUUID(), "FROM POSTGRES DB", "FROM POSTGRES DB", List<TripPlan>(
+//                List.of(
+//                        List.of(new Hotel (
+//                                "FROM POSTGRES DB",
+//                                "FROM POSTGRES DB",
+//                                null,
+//                                "FROM POSTGRES DB",
+//                                "FROM POSTGRES DB",
+//                                "FROM POSTGRES DB"
+//                        )),
+//                        List.of(new Transport(
+//                                "FROM POSTGRES DB",
+//                                "FROM POSTGRES DB",
+//                                "FROM POSTGRES DB",
+//                                "FROM POSTGRES DB",
+//                                null,
+//                                "FROM POSTGRES DB",
+//                                "FROM POSTGRES DB",
+//                                "FROM POSTGRES DB"
+//                        )),
+//                        List.of(new Activity(
+//                                "FROM POSTGRES DB",
+//                                "FROM POSTGRES DB",
+//                                null,
+//                                "FROM POSTGRES DB",
+//                                "FROM POSTGRES DB",
+//                                "FROM POSTGRES DB"
+//                        )),
+//                        List.of(new Food(
+//                                "FROM POSTGRES DB",
+//                                "FROM POSTGRES DB",
+//                                null,
+//                                "FROM POSTGRES DB",
+//                                "FROM POSTGRES DB"
+//                        )))
+//        ))));
+//    }
 
     @Override
     public Optional<UserPlans> selectUserPlansById(UUID id) {
