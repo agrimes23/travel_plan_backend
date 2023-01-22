@@ -39,9 +39,9 @@ public class UserPlansController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteExpense(@PathVariable String id){
+    public ResponseEntity deleteExpense(@PathVariable ObjectId id){
         System.out.println("Deleting Expense..." + id);
-        userPlansService.deleteUserPlans(new ObjectId(id));
+        userPlansService.deleteUserPlans(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
