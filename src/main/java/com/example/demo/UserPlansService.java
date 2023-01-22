@@ -27,12 +27,10 @@ public class UserPlansService {
         return userPlansRepository.insert(new UserPlans(username, password));
     }
 
-    public void updateUserPlans(ObjectId id, List<Object> tripPlans) {
-        UserPlans savedUserPlans = userPlansRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException(
-                        String.format("Cannot Find Your Account by ID %s", id)));
-
-        savedUserPlans.setTripPlans(tripPlans);
-        userPlansRepository.save(savedUserPlans);
+    public void updateUserPlans(UserPlans userPlans) {
+        userPlansRepository.save(userPlans);
+    }
+    public void deleteUserPlans(ObjectId id) {
+        userPlansRepository.deleteById(id);
     }
 }

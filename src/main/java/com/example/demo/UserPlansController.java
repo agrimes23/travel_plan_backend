@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import org.apache.coyote.Response;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
 
 @RestController
 @RequestMapping("api/v1/userplans")
@@ -32,10 +34,16 @@ public class UserPlansController {
     }
 
     @PutMapping
-    public void updateUserPlans(@RequestBody Object) {
-        userPlansService.updateUserPlans();
+    public void updateUserPlans(@RequestBody UserPlans userPlans) {
+        userPlansService.updateUserPlans(userPlans);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteExpense(@PathVariable String id){
+        System.out.println("Deleting Expense..." + id);
+        userPlansService.deleteUserPlans(new ObjectId(id));
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 
 
 }
