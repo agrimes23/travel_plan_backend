@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -21,6 +22,10 @@ public class UserPlansService {
 
     public Optional<UserPlans> singleUserPlan(ObjectId id) {
         return userPlansRepository.findById(id);
+    }
+
+    public Optional<UserPlans> userLogin(String username, String password){
+        return userPlansRepository.findAll().stream().filter(userPlans -> Objects.equals(userPlans.getUsername(), username) && Objects.equals(userPlans.getPassword(), password)).findFirst();
     }
 
     public UserPlans createUserPlans(String username, String password) {
