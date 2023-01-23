@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserPlans {
-
+    @JsonSerialize(using=ObjectIdSerializer.class)
     @Id
     private ObjectId id;
     private String username;

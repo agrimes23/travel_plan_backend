@@ -14,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/userplans")
+@CrossOrigin
 public class UserPlansController {
     @Autowired
     private UserPlansService userPlansService;
