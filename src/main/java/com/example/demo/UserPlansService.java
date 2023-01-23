@@ -38,4 +38,20 @@ public class UserPlansService {
     public void deleteUserPlans(ObjectId id) {
         userPlansRepository.deleteById(id);
     }
+
+//    public void updateUserPlans(ObjectId id, TripPlan tripPlan) {
+//        UserPlans originalUserPlans = userPlansRepository.findById(id)
+//                        .orElseThrow();
+//        originalUserPlans.getTripPlans().
+//        userPlansRepository.save();
+//    }
+
+    public void addTransport(ObjectId userId, String tripPlanId, Transport transport) {
+        UserPlans originalUserPlans = userPlansRepository.findById(userId)
+                        .orElseThrow();
+        TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
+                        .orElseThrow();
+        tripPlan.addTransport(transport);
+        userPlansRepository.save(originalUserPlans);
+    }
 }

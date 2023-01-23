@@ -21,7 +21,7 @@ public class UserPlans {
     private ObjectId id;
     private String username;
     private String password;
-    private List<Object> tripPlans;
+    private List<TripPlan> tripPlans;
 
     public UserPlans(String username, String password) {
         this.username = username;
@@ -29,7 +29,7 @@ public class UserPlans {
         this.tripPlans = List.of();
     }
 
-    public void setTripPlans(List<Object> tripPlans) {
+    public void setTripPlans(List<TripPlan> tripPlans) {
         this.tripPlans = tripPlans;
     }
 

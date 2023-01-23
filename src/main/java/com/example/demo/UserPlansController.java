@@ -45,6 +45,17 @@ public class UserPlansController {
         userPlansService.updateUserPlans(userPlans);
     }
 
+//    @PutMapping
+//    public void updateTripPlanInUserPlan(@RequestBody UpdateTripPlanInUserPlanRequestBody updateTripPlanInUserPlanRequestBody) {
+//
+//        userPlansService.updateUserPlans(updateTripPlanInUserPlanRequestBody.getId(), updateTripPlanInUserPlanRequestBody.getTripPlan());
+//    }
+    @PutMapping
+    public ResponseEntity addTransport(@RequestBody AddTransportRequestBody addTransportRequestBody) {
+        userPlansService.addTransport(addTransportRequestBody.getUserId(), addTransportRequestBody.getTripPlanId(), addTransportRequestBody.getTransport());
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity deleteExpense(@PathVariable ObjectId id){
         System.out.println("Deleting Expense..." + id);
