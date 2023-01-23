@@ -50,7 +50,9 @@ public class UserPlansController {
 //
 //        userPlansService.updateUserPlans(updateTripPlanInUserPlanRequestBody.getId(), updateTripPlanInUserPlanRequestBody.getTripPlan());
 //    }
-    @PutMapping
+
+
+    @PutMapping("/addTransport")
     public ResponseEntity addTransport(@RequestBody AddTransportRequestBody addTransportRequestBody) {
         userPlansService.addTransport(addTransportRequestBody.getUserId(), addTransportRequestBody.getTripPlanId(), addTransportRequestBody.getTransport());
         return ResponseEntity.status(HttpStatus.OK).build();

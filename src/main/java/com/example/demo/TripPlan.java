@@ -36,6 +36,7 @@ public class TripPlan {
 
 
     public void addTransport(Transport transport) {
+
         this.transport.add(transport);
     }
 
