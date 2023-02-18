@@ -35,16 +35,20 @@ public class UserPlansService {
     public void updateUserPlans(UserPlans userPlans) {
         userPlansRepository.save(userPlans);
     }
+
+//    public void addTripPlanToUserPlans(ObjectId userId, TripPlan tripPlan) {
+//        userPlansRepository.save()
+//    }
     public void deleteUserPlans(ObjectId id) {
         userPlansRepository.deleteById(id);
     }
 
-//    public void updateUserPlans(ObjectId id, TripPlan tripPlan) {
-//        UserPlans originalUserPlans = userPlansRepository.findById(id)
-//                        .orElseThrow();
-//        originalUserPlans.getTripPlans().
-//        userPlansRepository.save();
-//    }
+    public void addTripPlanToUserPlans(ObjectId id, TripPlan tripPlan) {
+        UserPlans originalUserPlans = userPlansRepository.findById(id)
+                        .orElseThrow();
+        originalUserPlans.getTripPlans().add(tripPlan);
+        userPlansRepository.save(originalUserPlans);
+    }
 
     public void addTransport(ObjectId userId, String tripPlanId, Transport transport) {
         UserPlans originalUserPlans = userPlansRepository.findById(userId)

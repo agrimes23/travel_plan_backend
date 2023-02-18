@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import org.apache.coyote.Response;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,6 +28,8 @@ public class UserPlansController {
         return new ResponseEntity<Optional<UserPlans>>(userPlansService.singleUserPlan(id), HttpStatus.OK);
     }
 
+
+    
     @PostMapping("/login")
     public ResponseEntity<Optional<UserPlans>> getUserLogin(@RequestBody LoginRequestBody loginRequestBody) {
         return new ResponseEntity<Optional<UserPlans>>(userPlansService.userLogin(loginRequestBody.getUsername(), loginRequestBody.getPassword()), HttpStatus.OK);
@@ -40,16 +41,16 @@ public class UserPlansController {
         return new ResponseEntity<UserPlans>(userPlansService.createUserPlans(payload.get("username"), payload.get("password")), HttpStatus.CREATED);
     }
 
-    @PutMapping
-    public void updateUserPlans(@RequestBody UserPlans userPlans) {
+    @PutMapping("/update/{id}")
+    public void updateUserPlans(@PathVariable ("id") String id, @RequestBody UserPlans userPlans) {
         userPlansService.updateUserPlans(userPlans);
     }
 
-//    @PutMapping
-//    public void updateTripPlanInUserPlan(@RequestBody UpdateTripPlanInUserPlanRequestBody updateTripPlanInUserPlanRequestBody) {
-//
-//        userPlansService.updateUserPlans(updateTripPlanInUserPlanRequestBody.getId(), updateTripPlanInUserPlanRequestBody.getTripPlan());
-//    }
+    @PutMapping("/addTrip/{id}")
+    public void addTripPlanToUserPlans(@PathVariable ("id") ObjectId id, @RequestBody AddTripPlanToUserPlansRequestBody addTripPlanToUserPlansRequestBody) {
+
+        userPlansService.addTripPlanToUserPlans(addTripPlanToUserPlansRequestBody.getUserId(), addTripPlanToUserPlansRequestBody.getTripPlan());
+    }
 
 
     @PutMapping("/addTransport")
