@@ -47,9 +47,8 @@ public class UserPlansController {
     }
 
     @PutMapping("/addTrip/{id}")
-    public void addTripPlanToUserPlans(@PathVariable ("id") ObjectId id, @RequestBody AddTripPlanToUserPlansRequestBody addTripPlanToUserPlansRequestBody) {
-
-        userPlansService.addTripPlanToUserPlans(addTripPlanToUserPlansRequestBody.getUserId(), addTripPlanToUserPlansRequestBody.getTripPlan());
+    public void addTripPlanToUserPlans(@PathVariable ("id") ObjectId userId, @RequestBody TripPlan tripPlan) {
+        userPlansService.addTripPlanToUserPlans(userId, tripPlan);
     }
 
 
