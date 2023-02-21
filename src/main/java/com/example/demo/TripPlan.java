@@ -1,9 +1,6 @@
 package com.example.demo;
 
-import org.bson.types.ObjectId;
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public class TripPlan {
@@ -13,20 +10,20 @@ public class TripPlan {
     private String tripStart;
     private String tripEnd;
     private float EstBud;
-    ArrayList< Object > hotel = new ArrayList < Object > ();
-    ArrayList < Transport > transport = new ArrayList < Transport > ();
-    ArrayList < Object > activity = new ArrayList < Object > ();
-    ArrayList < Object > food = new ArrayList < Object > ();
+    public ArrayList < Hotel > hotels = new ArrayList < Hotel >();
+    private ArrayList < Transport > transports = new ArrayList < Transport > ();
+    private ArrayList < Object > activities = new ArrayList < Object > ();
+    private ArrayList < Object > food = new ArrayList < Object > ();
 
-    public TripPlan(String placeName, String tripStart, String tripEnd, float EstBud, ArrayList<Object> hotel, ArrayList<Transport> transport, ArrayList<Object> activity, ArrayList<Object> food) {
+    public TripPlan(String placeName, String tripStart, String tripEnd, float EstBud, ArrayList<Hotel> hotels, ArrayList<Transport> transports, ArrayList<Object> activities, ArrayList<Object> food) {
         this.id = UUID.randomUUID().toString();
         this.placeName = placeName;
         this.tripStart = tripStart;
         this.tripEnd = tripEnd;
         this.EstBud = EstBud;
-        this.hotel = hotel;
-        this.transport = transport;
-        this.activity = activity;
+        this.hotels = hotels;
+        this.transports = transports;
+        this.activities = activities;
         this.food = food;
 
     }
@@ -37,7 +34,14 @@ public class TripPlan {
 
     public void addTransport(Transport transport) {
 
-        this.transport.add(transport);
+        this.transports.add(transport);
+    }
+
+    public void addHotel(Hotel hotel) {
+        if (this.hotels == null) {
+            this.hotels = new ArrayList < Hotel >();
+        }
+        this.hotels.add(hotel);
     }
 
     public String getId() {
@@ -81,4 +85,6 @@ public class TripPlan {
     public void setEstBud(float EstBud) {
         this.EstBud = EstBud;
     }
+
+
 }

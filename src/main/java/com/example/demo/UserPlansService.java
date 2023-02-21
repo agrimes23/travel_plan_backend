@@ -2,9 +2,6 @@ package com.example.demo;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -56,6 +53,15 @@ public class UserPlansService {
         TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
                         .orElseThrow();
         tripPlan.addTransport(transport);
+        userPlansRepository.save(originalUserPlans);
+    }
+
+    public void addHotelToTripPlans(ObjectId userId, String tripPlanId, Hotel hotel) {
+        UserPlans originalUserPlans = userPlansRepository.findById(userId)
+                .orElseThrow();
+        TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
+                .orElseThrow();
+        tripPlan.addHotel(hotel);
         userPlansRepository.save(originalUserPlans);
     }
 }
