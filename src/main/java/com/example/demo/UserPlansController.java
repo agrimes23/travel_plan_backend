@@ -55,13 +55,20 @@ public class UserPlansController {
     public void addHotelToTripPlans(@PathVariable ("userId") ObjectId userId, @PathVariable ("tripId") String tripId, @RequestBody Hotel hotel) {
         userPlansService.addHotelToTripPlans(userId, tripId, hotel);
     }
+    @PutMapping("/addActivity/{userId}/{tripId}")
+    public void addActivityToTripPlans(@PathVariable ("userId") ObjectId userId, @PathVariable ("tripId") String tripId, @RequestBody Activity activity) {
+        userPlansService.addActivityToTripPlans(userId, tripId, activity);
+    }
 
+    @PutMapping("/addTransport/{userId}/{tripId}")
+    public void addTransportToTripPlans(@PathVariable ("userId") ObjectId userId, @PathVariable ("tripId") String tripId, @RequestBody Transport transport) {
+        userPlansService.addTransportToTripPlans(userId, tripId, transport);
+    }
 
-//    @PutMapping("/addTransport")
-//    public ResponseEntity addTransport(@RequestBody AddTransportRequestBody addTransportRequestBody) {
-//        userPlansService.addTransport(addTransportRequestBody.getUserId(), addTransportRequestBody.getTripPlanId(), addTransportRequestBody.getTransport());
-//        return ResponseEntity.status(HttpStatus.OK).build();
-//    }
+    @PutMapping("/addFood/{userId}/{tripId}")
+    public void addFoodToTripPlans(@PathVariable ("userId") ObjectId userId, @PathVariable ("tripId") String tripId, @RequestBody Food food) {
+        userPlansService.addFoodToTripPlans(userId, tripId, food);
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteExpense(@PathVariable ObjectId id){

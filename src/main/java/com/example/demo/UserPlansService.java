@@ -47,7 +47,7 @@ public class UserPlansService {
         userPlansRepository.save(originalUserPlans);
     }
 
-    public void addTransport(ObjectId userId, String tripPlanId, Transport transport) {
+    public void addTransportToTripPlans(ObjectId userId, String tripPlanId, Transport transport) {
         UserPlans originalUserPlans = userPlansRepository.findById(userId)
                         .orElseThrow();
         TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
@@ -64,4 +64,22 @@ public class UserPlansService {
         tripPlan.addHotel(hotel);
         userPlansRepository.save(originalUserPlans);
     }
+
+    public void addActivityToTripPlans(ObjectId userId, String tripPlanId, Activity activity) {
+        UserPlans originalUserPlans = userPlansRepository.findById(userId)
+                .orElseThrow();
+        TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
+                .orElseThrow();
+        tripPlan.addActivity(activity);
+        userPlansRepository.save(originalUserPlans);
+    }
+    public void addFoodToTripPlans(ObjectId userId, String tripPlanId, Food food) {
+        UserPlans originalUserPlans = userPlansRepository.findById(userId)
+                .orElseThrow();
+        TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
+                .orElseThrow();
+        tripPlan.addFood(food);
+        userPlansRepository.save(originalUserPlans);
+    }
+
 }
