@@ -11,7 +11,7 @@ public class TripPlan {
     private String tripEnd;
     private float EstBud;
     public ArrayList < Hotel > hotels = new ArrayList < Hotel >();
-    ArrayList < Transport > transports = new ArrayList < Transport > ();
+    public ArrayList < Transport > transports = new ArrayList < Transport > ();
     public ArrayList < Activity > activities = new ArrayList < Activity>();
     public ArrayList < Food > food = new ArrayList < Food > ();
 
