@@ -1,6 +1,7 @@
 package com.example.demo;
 
 public class Transport {
+    private String transportID;
     private String transportCompany;
     private String type;
     private String deptDate;
@@ -13,6 +14,9 @@ public class Transport {
 
     // Getter Methods
 
+    public String getTransportID() {
+        return transportID;
+    }
     public String getTransportCompany() {
         return transportCompany;
     }
@@ -47,6 +51,9 @@ public class Transport {
 
     // Setter Methods
 
+    public void setTransportID(String transportID) {
+        this.transportID = transportID;
+    }
     public void setTransportCompany(String transportCompany) {
         this.transportCompany = transportCompany;
     }

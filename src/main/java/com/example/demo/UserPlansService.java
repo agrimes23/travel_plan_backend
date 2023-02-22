@@ -66,7 +66,6 @@ public class UserPlansService {
     }
 
     public void addActivityToTripPlans(ObjectId userId, String tripPlanId, Activity activity) {
-        System.out.println("Service.addActivityToTripPlans: " + userId + " " + tripPlanId );
         UserPlans originalUserPlans = userPlansRepository.findById(userId)
                 .orElseThrow();
         TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
