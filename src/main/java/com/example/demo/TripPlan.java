@@ -11,9 +11,9 @@ public class TripPlan {
     private String tripEnd;
     private float EstBud;
     public ArrayList < Hotel > hotels = new ArrayList < Hotel >();
-    private ArrayList < Transport > transports = new ArrayList < Transport > ();
-    private ArrayList < Activity > activities = new ArrayList < Activity>();
-    private ArrayList < Food > food = new ArrayList < Food > ();
+    ArrayList < Transport > transports = new ArrayList < Transport > ();
+    public ArrayList < Activity > activities = new ArrayList < Activity>();
+    public ArrayList < Food > food = new ArrayList < Food > ();
 
     public TripPlan(String placeName, String tripStart, String tripEnd, float EstBud, ArrayList<Hotel> hotels, ArrayList<Transport> transports, ArrayList<Activity> activities, ArrayList<Food> food) {
         this.id = UUID.randomUUID().toString();

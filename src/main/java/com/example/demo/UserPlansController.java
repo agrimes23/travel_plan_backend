@@ -57,6 +57,7 @@ public class UserPlansController {
     }
     @PutMapping("/addActivity/{userId}/{tripId}")
     public void addActivityToTripPlans(@PathVariable ("userId") ObjectId userId, @PathVariable ("tripId") String tripId, @RequestBody Activity activity) {
+        System.out.println("addActivityToTripPlans(): " + userId + " " + tripId );
         userPlansService.addActivityToTripPlans(userId, tripId, activity);
     }
 
@@ -72,7 +73,7 @@ public class UserPlansController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteExpense(@PathVariable ObjectId id){
-        System.out.println("Deleting Expense..." + id);
+        System.out.println("Deleting Account..." + id);
         userPlansService.deleteUserPlans(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

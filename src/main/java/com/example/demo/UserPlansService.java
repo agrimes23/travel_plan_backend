@@ -71,6 +71,7 @@ public class UserPlansService {
         TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
                 .orElseThrow();
         tripPlan.addActivity(activity);
+//        System.out.println("tripPlannn in Service: " + tripPlan.activities.size());
         userPlansRepository.save(originalUserPlans);
     }
     public void addFoodToTripPlans(ObjectId userId, String tripPlanId, Food food) {

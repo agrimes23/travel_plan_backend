@@ -29,8 +29,6 @@ public class Activity {
     public String getEndTime() {
         return endTime;
     }
-
-
     public String getSiteLink() {
         return siteLink;
     }
