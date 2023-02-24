@@ -73,6 +73,14 @@ public class UserPlansController {
         userPlansService.addFoodToTripPlans(userId, tripId, food);
     }
     // ------------------------------- Adding plans to Itinerary ------------------------------- //
+
+
+    // Create Itinerary by button click on frontend?
+    @PutMapping("/createItinerary/{userId}/{tripId}")
+    public void addItineraryToTripPlans(@PathVariable("userId") ObjectId userId, @PathVariable("tripId") String tripId, @RequestBody Itinerary itinerary) {
+        userPlansService.addItineraryToTripPlan(userId, tripId, itinerary);
+    }
+
     @PutMapping("/addHotelItinerary/{userId}/{tripId}/{itineraryId}")
     public void addHotelToItinerary(@PathVariable("userId") ObjectId userId, @PathVariable("tripId") String tripId, @PathVariable("itineraryId") String itinId, @RequestBody Hotel hotel) {
         userPlansService.addHotelOptToItinerary(userId, tripId, itinId, hotel);

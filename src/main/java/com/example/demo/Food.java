@@ -29,4 +29,7 @@ public class Food {
         return siteLink;
     }
 
+    public void setFoodId(String foodId) {
+        this.foodID = foodId;
+    }
 }

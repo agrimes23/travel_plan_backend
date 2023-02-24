@@ -33,4 +33,9 @@ public class Activity {
         return siteLink;
     }
 
+
+    public void setActivityId(String activityId) {
+        this.actID = activityId;
+    }
+
 }

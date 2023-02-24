@@ -3,6 +3,7 @@ package com.example.demo;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Itinerary {
     public String itineraryID;
@@ -34,11 +35,11 @@ public class Itinerary {
         }
         this.itineraryHotels.add(itineraryHotel);
     }
-    public void addItineraryActivity(Activity itineraryActivitie) {
+    public void addItineraryActivity(Activity itineraryActivities) {
         if (this.itineraryActivities == null) {
             this.itineraryActivities = new ArrayList < Activity >();
         }
-        this.itineraryActivities.add(itineraryActivitie);
+        this.itineraryActivities.add(itineraryActivities);
     }
 
     public void addItineraryFood(Food itineraryFood) {
