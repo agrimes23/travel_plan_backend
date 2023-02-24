@@ -32,4 +32,7 @@ public class Hotel {
         return siteLink;
     }
 
+    public void setHotelId(String hotelId) {
+        this.hotelId = hotelId;
+    }
 }

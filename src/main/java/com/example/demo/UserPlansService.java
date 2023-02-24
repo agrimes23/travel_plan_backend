@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserPlansService {
@@ -40,7 +41,13 @@ public class UserPlansService {
         userPlansRepository.deleteById(id);
     }
 
+    // ------------------------------ Updating Trip Plans ------------------------------ //
+
     public void addTripPlanToUserPlans(ObjectId id, TripPlan tripPlan) {
+
+        UUID tripId = UUID.randomUUID();
+        tripPlan.setId(tripId.toString());
+
         UserPlans originalUserPlans = userPlansRepository.findById(id)
                         .orElseThrow();
         originalUserPlans.getTripPlans().add(tripPlan);
@@ -48,6 +55,9 @@ public class UserPlansService {
     }
 
     public void addTransportToTripPlans(ObjectId userId, String tripPlanId, Transport transport) {
+        UUID transportId = UUID.randomUUID();
+        transport.setTransportID(transportId.toString());
+
         UserPlans originalUserPlans = userPlansRepository.findById(userId)
                         .orElseThrow();
         TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
@@ -57,6 +67,10 @@ public class UserPlansService {
     }
 
     public void addHotelToTripPlans(ObjectId userId, String tripPlanId, Hotel hotel) {
+
+        UUID hotelId = UUID.randomUUID();
+        hotel.setHotelId(hotelId.toString());
+
         UserPlans originalUserPlans = userPlansRepository.findById(userId)
                 .orElseThrow();
         TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
@@ -66,6 +80,10 @@ public class UserPlansService {
     }
 
     public void addActivityToTripPlans(ObjectId userId, String tripPlanId, Activity activity) {
+
+        UUID activityId = UUID.randomUUID();
+        activity.setActivityId(activityId.toString());
+
         UserPlans originalUserPlans = userPlansRepository.findById(userId)
                 .orElseThrow();
         TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
@@ -75,6 +93,10 @@ public class UserPlansService {
         userPlansRepository.save(originalUserPlans);
     }
     public void addFoodToTripPlans(ObjectId userId, String tripPlanId, Food food) {
+
+        UUID foodId = UUID.randomUUID();
+        food.setFoodId(foodId.toString());
+
         UserPlans originalUserPlans = userPlansRepository.findById(userId)
                 .orElseThrow();
         TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
@@ -86,7 +108,13 @@ public class UserPlansService {
     // Make 4 services that add objects to Hotels, Activities, Transport, and Food
     // should be everything... then write code on frontend
 
+    // ------------------------------ Updating the Itinerary ------------------------------ //
+
     public void addItineraryToTripPlan(ObjectId id, String tripPlanId, Itinerary itinerary) {
+
+        UUID itinId = UUID.randomUUID();
+
+        itinerary.itineraryID = itinId.toString();
 
         UserPlans originalUserPlans = userPlansRepository.findById(id)
                 .orElseThrow();
