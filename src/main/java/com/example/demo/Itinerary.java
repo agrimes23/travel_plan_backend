@@ -3,16 +3,15 @@ package com.example.demo;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
-public class Itineraries {
+public class Itinerary {
     public String itineraryID;
     public ArrayList< Hotel > itineraryHotels = new ArrayList < Hotel >();
     public ArrayList < Transport > itineraryTransports = new ArrayList < Transport > ();
     public ArrayList < Activity > itineraryActivities = new ArrayList < Activity>();
     public ArrayList < Food > itineraryFood = new ArrayList < Food > ();
 
-    public Itineraries(String itineraryID, ArrayList<Hotel> itineraryHotels, ArrayList<Transport> itineraryTransports, ArrayList<Activity> itineraryActivities, ArrayList<Food> itineraryFood) {
+    public Itinerary(String itineraryID, ArrayList<Hotel> itineraryHotels, ArrayList<Transport> itineraryTransports, ArrayList<Activity> itineraryActivities, ArrayList<Food> itineraryFood) {
         this.itineraryID = itineraryID;
         this.itineraryHotels = itineraryHotels;
         this.itineraryTransports = itineraryTransports;
@@ -49,7 +48,7 @@ public class Itineraries {
         this.itineraryFood.add(itineraryFood);
     }
 
-    public ObjectId getItineraryID() {
+    public String getItineraryID() {
         return itineraryID;
     }
 

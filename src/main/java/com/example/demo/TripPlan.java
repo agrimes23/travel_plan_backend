@@ -14,8 +14,9 @@ public class TripPlan {
     public ArrayList < Transport > transports = new ArrayList < Transport > ();
     public ArrayList < Activity > activities = new ArrayList < Activity>();
     public ArrayList < Food > food = new ArrayList < Food > ();
+    public ArrayList < Itinerary > itineraries = new ArrayList<>();
 
-    public TripPlan(String placeName, String tripStart, String tripEnd, float EstBud, ArrayList<Hotel> hotels, ArrayList<Transport> transports, ArrayList<Activity> activities, ArrayList<Food> food) {
+    public TripPlan(String placeName, String tripStart, String tripEnd, float EstBud, ArrayList<Hotel> hotels, ArrayList<Transport> transports, ArrayList<Activity> activities, ArrayList<Food> food, ArrayList<Itinerary> itineraries) {
         this.id = UUID.randomUUID().toString();
         this.placeName = placeName;
         this.tripStart = tripStart;
@@ -25,6 +26,7 @@ public class TripPlan {
         this.transports = transports;
         this.activities = activities;
         this.food = food;
+        this.itineraries = itineraries;
 
     }
 
@@ -57,6 +59,13 @@ public class TripPlan {
             this.food = new ArrayList < Food >();
         }
         this.food.add(food);
+    }
+    public void addItinerary() {
+
+    }
+
+    public ArrayList< Itinerary > getItinerary() {
+        return itineraries;
     }
 
     public String getId() {
