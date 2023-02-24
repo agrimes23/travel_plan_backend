@@ -82,5 +82,27 @@ public class UserPlansService {
         tripPlan.addFood(food);
         userPlansRepository.save(originalUserPlans);
     }
+    // Make a schema in Itinerary.java, and add the Itinerary array in TripPlan.java
+    // Make 4 services that add objects to Hotels, Activities, Transport, and Food
+    // should be everything... then write code on frontend
+    public void addHotelOptToItinerary (ObjectId userId, String tripPlanId, String  Hotel hotel) {
+        UserPlans originalUserPlans = userPlansRepository.findById(userId)
+                .orElseThrow();
+        TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
+                .orElseThrow();
+
+        tripPlan.addItineraryHotel();
+        userPlansRepository.save(originalUserPlans);
+    }
+    public void addActivityOptToItinerary () {
+        // Should be similar to the add_ToTripPlans methods
+    }
+
+    public void addTransportOptToItinerary () {
+        // Should be similar to the add_ToTripPlans methods
+    }
+    public void addFoodOptToItinerary () {
+        // Should be similar to the add_ToTripPlans methods
+    }
 
 }
