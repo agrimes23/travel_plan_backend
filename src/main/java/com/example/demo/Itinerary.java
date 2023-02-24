@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Itinerary {
     public String itineraryID;
-    public ArrayList< Hotel > itineraryHotels = new ArrayList < Hotel >();
+    public ArrayList < Hotel > itineraryHotels = new ArrayList < Hotel >();
     public ArrayList < Transport > itineraryTransports = new ArrayList < Transport > ();
     public ArrayList < Activity > itineraryActivities = new ArrayList < Activity>();
     public ArrayList < Food > itineraryFood = new ArrayList < Food > ();

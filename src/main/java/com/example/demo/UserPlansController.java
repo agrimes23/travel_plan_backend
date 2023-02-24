@@ -46,6 +46,8 @@ public class UserPlansController {
         userPlansService.updateUserPlans(userPlans);
     }
 
+    // ------------------------------- Adding trip to user account ------------------------------- //
+
     @PutMapping("/addTrip/{id}")
     public void addTripPlanToUserPlans(@PathVariable ("id") ObjectId userId, @RequestBody TripPlan tripPlan) {
         userPlansService.addTripPlanToUserPlans(userId, tripPlan);
@@ -70,7 +72,13 @@ public class UserPlansController {
     public void addFoodToTripPlans(@PathVariable ("userId") ObjectId userId, @PathVariable ("tripId") String tripId, @RequestBody Food food) {
         userPlansService.addFoodToTripPlans(userId, tripId, food);
     }
+    // ------------------------------- Adding plans to Itinerary ------------------------------- //
+    @PutMapping("/addHotelItinerary/{userId}/{tripId}/{itineraryId}")
+    public void addHotelToItinerary(@PathVariable("userId") ObjectId userId, @PathVariable("tripId") String tripId, @PathVariable("itineraryId") String itinId, @RequestBody Hotel hotel) {
+        userPlansService.addHotelOptToItinerary(userId, tripId, itinId, hotel);
+    }
 
+    // ------------------------------- Deleting account ------------------------------- //
     @DeleteMapping("/{id}")
     public ResponseEntity deleteExpense(@PathVariable ObjectId id){
         System.out.println("Deleting Account..." + id);

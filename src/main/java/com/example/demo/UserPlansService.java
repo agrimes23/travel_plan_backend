@@ -86,12 +86,15 @@ public class UserPlansService {
     // Make 4 services that add objects to Hotels, Activities, Transport, and Food
     // should be everything... then write code on frontend
 
-    public void addItineraryToTripPlan() {
+    public void addItineraryToTripPlan(ObjectId id, String tripPlanId, Itinerary itinerary) {
+
         UserPlans originalUserPlans = userPlansRepository.findById(id)
                 .orElseThrow();
-        Itinerary itinerary = tripPlan.getItinerary().stream().filter(it -> Objects.equals(it.getItineraryID(), itineraryID)).findFirst()
+        TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
                 .orElseThrow();
+        tripPlan.getItinerary().add(itinerary);
         userPlansRepository.save(originalUserPlans);
+
     }
 
     public void addHotelOptToItinerary (ObjectId userId, String tripPlanId, String itineraryID, Hotel hotel) {
@@ -104,15 +107,36 @@ public class UserPlansService {
         itinerary.addItineraryHotel(hotel);
         userPlansRepository.save(originalUserPlans);
     }
-    public void addActivityOptToItinerary () {
-        // Should be similar to the add_ToTripPlans methods
+    public void addActivityOptToItinerary (ObjectId userId, String tripPlanId, String itineraryID, Activity activity) {
+        UserPlans originalUserPlans = userPlansRepository.findById(userId)
+                .orElseThrow();
+        TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
+                .orElseThrow();
+        Itinerary itinerary = tripPlan.getItinerary().stream().filter(it -> Objects.equals(it.getItineraryID(), itineraryID)).findFirst()
+                .orElseThrow();
+        itinerary.addItineraryActivity(activity);
+        userPlansRepository.save(originalUserPlans);
     }
 
-    public void addTransportOptToItinerary () {
-        // Should be similar to the add_ToTripPlans methods
+    public void addTransportOptToItinerary (ObjectId userId, String tripPlanId, String itineraryID, Transport transport) {
+        UserPlans originalUserPlans = userPlansRepository.findById(userId)
+                .orElseThrow();
+        TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
+                .orElseThrow();
+        Itinerary itinerary = tripPlan.getItinerary().stream().filter(it -> Objects.equals(it.getItineraryID(), itineraryID)).findFirst()
+                .orElseThrow();
+        itinerary.addItineraryTransport(transport);
+        userPlansRepository.save(originalUserPlans);
     }
-    public void addFoodOptToItinerary () {
-        // Should be similar to the add_ToTripPlans methods
+    public void addFoodOptToItinerary (ObjectId userId, String tripPlanId, String itineraryID, Food food) {
+         UserPlans originalUserPlans = userPlansRepository.findById(userId)
+                .orElseThrow();
+         TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
+                .orElseThrow();
+         Itinerary itinerary = tripPlan.getItinerary().stream().filter(it -> Objects.equals(it.getItineraryID(), itineraryID)).findFirst()
+                .orElseThrow();
+         itinerary.addItineraryFood(food);
+         userPlansRepository.save(originalUserPlans);
     }
 
 }
