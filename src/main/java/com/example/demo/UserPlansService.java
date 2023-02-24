@@ -87,7 +87,11 @@ public class UserPlansService {
     // should be everything... then write code on frontend
 
     public void addItineraryToTripPlan() {
-
+        UserPlans originalUserPlans = userPlansRepository.findById(id)
+                .orElseThrow();
+        Itinerary itinerary = tripPlan.getItinerary().stream().filter(it -> Objects.equals(it.getItineraryID(), itineraryID)).findFirst()
+                .orElseThrow();
+        userPlansRepository.save(originalUserPlans);
     }
 
     public void addHotelOptToItinerary (ObjectId userId, String tripPlanId, String itineraryID, Hotel hotel) {
