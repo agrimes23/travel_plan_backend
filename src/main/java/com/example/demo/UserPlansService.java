@@ -115,12 +115,14 @@ public class UserPlansService {
         UUID itinId = UUID.randomUUID();
 
         itinerary.itineraryID = itinId.toString();
+        System.out.println("itinerary ID " + itinerary.itineraryID);
+        System.out.println("itinerary ID Type " + (itinerary.itineraryID).getClass().getSimpleName());
 
         UserPlans originalUserPlans = userPlansRepository.findById(id)
                 .orElseThrow();
         TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
                 .orElseThrow();
-        tripPlan.getItinerary().add(itinerary);
+        tripPlan.addItinerary(itinerary);
         userPlansRepository.save(originalUserPlans);
 
     }
@@ -130,7 +132,7 @@ public class UserPlansService {
                 .orElseThrow();
         TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
                 .orElseThrow();
-        Itinerary itinerary = tripPlan.getItinerary().stream().filter(it -> Objects.equals(it.getItineraryID(), itineraryID)).findFirst()
+        Itinerary itinerary = tripPlan.itineraries.stream().filter(it -> Objects.equals(it.getItineraryID(), itineraryID)).findFirst()
                 .orElseThrow();
         itinerary.addItineraryHotel(hotel);
         userPlansRepository.save(originalUserPlans);
@@ -140,7 +142,7 @@ public class UserPlansService {
                 .orElseThrow();
         TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
                 .orElseThrow();
-        Itinerary itinerary = tripPlan.getItinerary().stream().filter(it -> Objects.equals(it.getItineraryID(), itineraryID)).findFirst()
+        Itinerary itinerary = tripPlan.itineraries.stream().filter(it -> Objects.equals(it.getItineraryID(), itineraryID)).findFirst()
                 .orElseThrow();
         itinerary.addItineraryActivity(activity);
         userPlansRepository.save(originalUserPlans);
@@ -151,7 +153,7 @@ public class UserPlansService {
                 .orElseThrow();
         TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
                 .orElseThrow();
-        Itinerary itinerary = tripPlan.getItinerary().stream().filter(it -> Objects.equals(it.getItineraryID(), itineraryID)).findFirst()
+        Itinerary itinerary = tripPlan.itineraries.stream().filter(it -> Objects.equals(it.getItineraryID(), itineraryID)).findFirst()
                 .orElseThrow();
         itinerary.addItineraryTransport(transport);
         userPlansRepository.save(originalUserPlans);
@@ -161,7 +163,7 @@ public class UserPlansService {
                 .orElseThrow();
          TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
                 .orElseThrow();
-         Itinerary itinerary = tripPlan.getItinerary().stream().filter(it -> Objects.equals(it.getItineraryID(), itineraryID)).findFirst()
+         Itinerary itinerary = tripPlan.itineraries.stream().filter(it -> Objects.equals(it.getItineraryID(), itineraryID)).findFirst()
                 .orElseThrow();
          itinerary.addItineraryFood(food);
          userPlansRepository.save(originalUserPlans);
