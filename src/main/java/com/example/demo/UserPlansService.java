@@ -115,8 +115,6 @@ public class UserPlansService {
         UUID itinId = UUID.randomUUID();
 
         itinerary.itineraryID = itinId.toString();
-        System.out.println("itinerary ID " + itinerary.itineraryID);
-        System.out.println("itinerary ID Type " + (itinerary.itineraryID).getClass().getSimpleName());
 
         UserPlans originalUserPlans = userPlansRepository.findById(id)
                 .orElseThrow();
@@ -127,24 +125,25 @@ public class UserPlansService {
 
     }
 
-    public void addHotelOptToItinerary (ObjectId userId, String tripPlanId, String itineraryID, Hotel hotel) {
+    public void addHotelOptToItinerary (ObjectId userId, String tripPlanId, String itineraryID, String itineraryItemId) {
+
         UserPlans originalUserPlans = userPlansRepository.findById(userId)
                 .orElseThrow();
         TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
                 .orElseThrow();
         Itinerary itinerary = tripPlan.itineraries.stream().filter(it -> Objects.equals(it.getItineraryID(), itineraryID)).findFirst()
                 .orElseThrow();
-        itinerary.addItineraryHotel(hotel);
+        itinerary.addItineraryItem(new ItineraryItem(itineraryItemId, ItineraryItemType.HOTEL));
         userPlansRepository.save(originalUserPlans);
     }
-    public void addActivityOptToItinerary (ObjectId userId, String tripPlanId, String itineraryID, Activity activity) {
+    public void addActivityOptToItinerary (ObjectId userId, String tripPlanId, String itineraryID, String itineraryItemId) {
         UserPlans originalUserPlans = userPlansRepository.findById(userId)
                 .orElseThrow();
         TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
                 .orElseThrow();
         Itinerary itinerary = tripPlan.itineraries.stream().filter(it -> Objects.equals(it.getItineraryID(), itineraryID)).findFirst()
                 .orElseThrow();
-        itinerary.addItineraryActivity(activity);
+        itinerary.addItineraryItem(new ItineraryItem(itineraryItemId, ItineraryItemType.ACTIVITY));
         userPlansRepository.save(originalUserPlans);
     }
 
@@ -168,5 +167,10 @@ public class UserPlansService {
          itinerary.addItineraryFood(food);
          userPlansRepository.save(originalUserPlans);
     }
+
+    public void getItinerariesViewModel (ObjectId userId, String tripPlanId, String itineraryID) {
+        String[] itinerariesVM
+    }
+
 
 }

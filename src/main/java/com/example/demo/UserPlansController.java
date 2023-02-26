@@ -22,14 +22,11 @@ public class UserPlansController {
     public ResponseEntity<List<UserPlans>> getAllUserPlans() {
         return new ResponseEntity<List<UserPlans>>(userPlansService.allUserPlans(), HttpStatus.OK);
     }
-
     @GetMapping("/{id}")
     public ResponseEntity<Optional<UserPlans>> getSingleUserPlan(@PathVariable ObjectId id){
         return new ResponseEntity<Optional<UserPlans>>(userPlansService.singleUserPlan(id), HttpStatus.OK);
     }
 
-
-    
     @PostMapping("/login")
     public ResponseEntity<Optional<UserPlans>> getUserLogin(@RequestBody LoginRequestBody loginRequestBody) {
         return new ResponseEntity<Optional<UserPlans>>(userPlansService.userLogin(loginRequestBody.getUsername(), loginRequestBody.getPassword()), HttpStatus.OK);
@@ -74,7 +71,6 @@ public class UserPlansController {
     }
     // ------------------------------- Adding plans to Itinerary ------------------------------- //
 
-
     // Create Itinerary by button click on frontend?
     @PutMapping("/createItinerary/{userId}/{tripId}")
     public void addItineraryToTripPlans(@PathVariable("userId") ObjectId userId, @PathVariable("tripId") String tripId, @RequestBody Itinerary itinerary) {
@@ -82,8 +78,8 @@ public class UserPlansController {
     }
 
     @PutMapping("/addHotelItinerary/{userId}/{tripId}/{itineraryId}")
-    public void addHotelToItinerary(@PathVariable("userId") ObjectId userId, @PathVariable("tripId") String tripId, @PathVariable("itineraryId") String itinId, @RequestBody Hotel hotel) {
-        userPlansService.addHotelOptToItinerary(userId, tripId, itinId, hotel);
+    public void addHotelToItinerary(@PathVariable("userId") ObjectId userId, @PathVariable("tripId") String tripId, @PathVariable("itineraryId") String itinId, @RequestBody String itineraryItemId) {
+        userPlansService.addHotelOptToItinerary(userId, tripId, itinId, itineraryItemId);
     }
 
     // ------------------------------- Deleting account ------------------------------- //
