@@ -147,24 +147,24 @@ public class UserPlansService {
         userPlansRepository.save(originalUserPlans);
     }
 
-    public void addTransportOptToItinerary (ObjectId userId, String tripPlanId, String itineraryID, Transport transport) {
+    public void addTransportOptToItinerary (ObjectId userId, String tripPlanId, String itineraryID, String itineraryItemId) {
         UserPlans originalUserPlans = userPlansRepository.findById(userId)
                 .orElseThrow();
         TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
                 .orElseThrow();
         Itinerary itinerary = tripPlan.itineraries.stream().filter(it -> Objects.equals(it.getItineraryID(), itineraryID)).findFirst()
                 .orElseThrow();
-        itinerary.addItineraryTransport(transport);
+        itinerary.addItineraryItem(new ItineraryItem(itineraryItemId, ItineraryItemType.TRANSPORT));
         userPlansRepository.save(originalUserPlans);
     }
-    public void addFoodOptToItinerary (ObjectId userId, String tripPlanId, String itineraryID, Food food) {
+    public void addFoodOptToItinerary (ObjectId userId, String tripPlanId, String itineraryID, String itineraryItemId) {
          UserPlans originalUserPlans = userPlansRepository.findById(userId)
                 .orElseThrow();
          TripPlan tripPlan = originalUserPlans.getTripPlans().stream().filter(it -> Objects.equals(it.getId(), tripPlanId)).findFirst()
                 .orElseThrow();
          Itinerary itinerary = tripPlan.itineraries.stream().filter(it -> Objects.equals(it.getItineraryID(), itineraryID)).findFirst()
                 .orElseThrow();
-         itinerary.addItineraryFood(food);
+         itinerary.addItineraryItem(new ItineraryItem(itineraryItemId, ItineraryItemType.FOOD));
          userPlansRepository.save(originalUserPlans);
     }
 
