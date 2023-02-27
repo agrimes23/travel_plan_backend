@@ -4,10 +4,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class UserPlansService {
@@ -169,7 +166,7 @@ public class UserPlansService {
     }
 
     public void getItinerariesViewModel (ObjectId userId, String tripPlanId, String itineraryID) {
-        String[] itinerariesVM
+        
     }
 
 
