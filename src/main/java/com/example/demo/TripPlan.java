@@ -60,12 +60,11 @@ public class TripPlan {
         }
         this.food.add(food);
     }
-    public void addItinerary() {
-
-    }
-
-    public ArrayList< Itinerary > getItinerary() {
-        return itineraries;
+    public void addItinerary(Itinerary itinerary) {
+        if (this.itineraries == null) {
+            this.itineraries = new ArrayList < Itinerary>();
+        }
+        this.itineraries.add(itinerary);
     }
 
     public String getId() {
