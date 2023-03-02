@@ -8,7 +8,13 @@ import java.util.*;
 
 @Service
 public class UserPlansService {
+    // for unit tests //
 
+    public UserPlansService(UserPlansRepository userPlansRepository) {
+        this.userPlansRepository = userPlansRepository;
+    }
+    // ------------- //
+    
     @Autowired
     private UserPlansRepository userPlansRepository;
 
@@ -209,7 +215,7 @@ public class UserPlansService {
                             };
                         })
                         .reduce(0.0f, Float::sum);
-        String totalCostString = "Total Cost: $" + totalCostFloat;
+        String totalCostString = "Total Cost: $" + String.format("%.2f",totalCostFloat);
         return new ItineraryViewModel(new ArrayList<>(), totalCostString);
 
     }
