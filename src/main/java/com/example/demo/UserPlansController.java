@@ -54,6 +54,7 @@ public class UserPlansController {
     public void addHotelToTripPlans(@PathVariable ("userId") ObjectId userId, @PathVariable ("tripId") String tripId, @RequestBody Hotel hotel) {
         userPlansService.addHotelToTripPlans(userId, tripId, hotel);
     }
+    
     @PutMapping("/addActivity/{userId}/{tripId}")
     public void addActivityToTripPlans(@PathVariable ("userId") ObjectId userId, @PathVariable ("tripId") String tripId, @RequestBody Activity activity) {
         System.out.println("addActivityToTripPlans(): " + userId + " " + tripId );
