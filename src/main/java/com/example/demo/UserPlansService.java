@@ -14,7 +14,7 @@ public class UserPlansService {
         this.userPlansRepository = userPlansRepository;
     }
     // ------------- //
-    
+
     @Autowired
     private UserPlansRepository userPlansRepository;
 
