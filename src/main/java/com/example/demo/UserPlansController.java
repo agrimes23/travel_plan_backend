@@ -15,13 +15,15 @@ import java.util.Optional;
 @RequestMapping("api/v1/userplans")
 @CrossOrigin
 public class UserPlansController {
-    @Autowired
+
     private UserPlansService userPlansService;
+
 
     @GetMapping
     public ResponseEntity<List<UserPlans>> getAllUserPlans() {
         return new ResponseEntity<List<UserPlans>>(userPlansService.allUserPlans(), HttpStatus.OK);
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<Optional<UserPlans>> getSingleUserPlan(@PathVariable ObjectId id){
         return new ResponseEntity<Optional<UserPlans>>(userPlansService.singleUserPlan(id), HttpStatus.OK);

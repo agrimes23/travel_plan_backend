@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -16,6 +18,7 @@ public class TripPlan {
     public ArrayList < Food > food = new ArrayList < Food > ();
     public ArrayList < Itinerary > itineraries = new ArrayList<>();
 
+    @Autowired
     public TripPlan(String id, String placeName, String tripStart, String tripEnd, float EstBud, ArrayList<Hotel> hotels, ArrayList<Transport> transports, ArrayList<Activity> activities, ArrayList<Food> food, ArrayList<Itinerary> itineraries) {
         this.id = id;
         this.placeName = placeName;

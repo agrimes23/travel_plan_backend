@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ public class Itinerary {
     public ArrayList<ItineraryItem> itineraryItem = new ArrayList < ItineraryItem >();
 
 
+    @Autowired
     public Itinerary(String itineraryID, ArrayList<ItineraryItem> itineraryItem) {
         this.itineraryID = itineraryID;
         this.itineraryItem = itineraryItem;

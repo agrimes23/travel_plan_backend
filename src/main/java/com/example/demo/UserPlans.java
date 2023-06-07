@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -23,6 +24,7 @@ public class UserPlans {
     private String password;
     private List<TripPlan> tripPlans;
 
+    @Autowired
     public UserPlans(String username, String password) {
         this.username = username;
         this.password = password;
