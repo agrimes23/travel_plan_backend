@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface UserPlansRepository extends MongoRepository<UserPlans, ObjectId> {
     Optional<UserPlans> findById(ObjectId id);
     // not sure if below will work need to check
-//    Optional<UserPlans> findByUsername(String username);
+    Optional<UserPlans> findByUsername(String username);
 }
