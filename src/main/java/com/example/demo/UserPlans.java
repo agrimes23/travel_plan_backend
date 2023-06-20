@@ -45,6 +45,8 @@ public class UserPlans implements UserDetails {
         return id;
     }
 
+    // TODO: Do I need to make a get TripPlans? How can I get user info through JWT, especially when it's updated?
+
     @Override
     public String getUsername() {
         return username;
