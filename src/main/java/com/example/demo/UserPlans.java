@@ -28,7 +28,7 @@ public class UserPlans implements UserDetails {
     private String username;
     private String password;
 
-    private Role role;
+    private Role role = Role.USER;
     private List<TripPlan> tripPlans;
 
     public UserPlans(String username, String password) {

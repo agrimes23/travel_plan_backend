@@ -20,10 +20,9 @@ import java.util.function.Function;
 public class JwtService {
 
     // I'll figure out how to do the encryption after setting up JWT successfully
-    private static final String SECRET_KEY = "as3dfasdf9sadfhkl8hgj4t31ghg4";
+    private static final String SECRET_KEY = "6C1E594A5F32876E5A16D587CD48C4B05CB3D13A9BE28D097FAA4E8DF02D367B";
 
     public String extractUsername(String token) {
-        // not sure why this is underlined?
         return extractClaim(token, Claims::getSubject);
     }
 
