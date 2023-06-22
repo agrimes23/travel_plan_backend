@@ -22,6 +22,11 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
+        var existingUser = repository.findByUsername(request.getUsername());
+        if (existingUser.isPresent()) {
+            throw new IllegalArgumentException("Username already exists");
+        }
+
         var user = UserPlans.builder()
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
