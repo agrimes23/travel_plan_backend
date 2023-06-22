@@ -4,6 +4,8 @@ import com.example.demo.Role;
 import com.example.demo.UserPlans;
 import com.example.demo.UserPlansRepository;
 import com.example.demo.config.JwtService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,6 +13,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 
 @Service
 @RequiredArgsConstructor
@@ -39,7 +42,7 @@ public class AuthenticationService {
                 .build();
     }
 
-    public AuthenticationResponse authenticate(AuthenticationRequest request) {
+    public AuthenticationResponse authenticate(AuthenticationRequest request, HttpServletResponse response) {
 
         try {
             authenticationManager.authenticate(
@@ -57,6 +60,12 @@ public class AuthenticationService {
                 .orElseThrow();
 
         var jwtToken = jwtService.generateToken(user);
+
+        Cookie jwtCookie = new Cookie("jwtToken", jwtToken);
+        jwtCookie.setHttpOnly(true);
+        jwtCookie.setPath("/"); // Set the cookie path as per your requirements
+        response.addCookie(jwtCookie);
+
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
