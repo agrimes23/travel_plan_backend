@@ -33,6 +33,7 @@ public class AuthenticationService {
         var user = UserPlans.builder()
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
+                .tripPlans(request.getTripPlans())
                 .role(Role.USER)
                 .build();
         repository.save(user);
@@ -42,7 +43,7 @@ public class AuthenticationService {
                 .build();
     }
 
-    public AuthenticationResponse authenticate(AuthenticationRequest request, HttpServletResponse response) {
+    public AuthenticationResponse authenticate(AuthenticationRequest request) {
 
         try {
             authenticationManager.authenticate(
@@ -60,12 +61,6 @@ public class AuthenticationService {
                 .orElseThrow();
 
         var jwtToken = jwtService.generateToken(user);
-
-        Cookie jwtCookie = new Cookie("jwtToken", jwtToken);
-        jwtCookie.setHttpOnly(true);
-        jwtCookie.setPath("/"); // Set the cookie path as per your requirements
-        response.addCookie(jwtCookie);
-
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();

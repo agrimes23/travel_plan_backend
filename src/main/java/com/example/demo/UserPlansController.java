@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/userplans")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserPlansController {
     @Autowired
     private UserPlansService userPlansService;
@@ -22,10 +22,10 @@ public class UserPlansController {
     public ResponseEntity<List<UserPlans>> getAllUserPlans() {
         return new ResponseEntity<List<UserPlans>>(userPlansService.allUserPlans(), HttpStatus.OK);
     }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Optional<UserPlans>> getSingleUserPlan(@PathVariable ObjectId id){
-        return new ResponseEntity<Optional<UserPlans>>(userPlansService.singleUserPlan(id), HttpStatus.OK);
+    @CrossOrigin
+    @GetMapping("/{username}")
+    public ResponseEntity<Optional<UserPlans>> getSingleUserPlan(@PathVariable String username){
+        return new ResponseEntity<Optional<UserPlans>>(userPlansService.singleUserPlan(username), HttpStatus.OK);
     }
 
 

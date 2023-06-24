@@ -17,8 +17,8 @@ public class UserPlansService {
         return userPlansRepository.findAll();
     }
 
-    public Optional<UserPlans> singleUserPlan(ObjectId id) {
-        return userPlansRepository.findById(id);
+    public Optional<UserPlans> singleUserPlan(String username) {
+        return userPlansRepository.findByUsername(username);
     }
 
     public Optional<UserPlans> userLogin(String username, String password){
