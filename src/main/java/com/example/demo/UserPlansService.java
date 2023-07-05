@@ -25,8 +25,8 @@ public class UserPlansService {
         return userPlansRepository.findAll().stream().filter(userPlans -> Objects.equals(userPlans.getUsername(), username) && Objects.equals(userPlans.getPassword(), password)).findFirst();
     }
 
-    public UserPlans createUserPlans(String username, String password) {
-        return userPlansRepository.insert(new UserPlans(username, password));
+    public UserPlans createUserPlans(String username, String password, List<TripPlan> tripPlans) {
+        return userPlansRepository.insert(new UserPlans(username, password, tripPlans));
     }
 
     public void updateUserPlans(UserPlans userPlans) {
@@ -43,7 +43,7 @@ public class UserPlansService {
     public void addTripPlanToUserPlans(ObjectId id, TripPlan tripPlan) {
         UserPlans originalUserPlans = userPlansRepository.findById(id)
                         .orElseThrow();
-        originalUserPlans.getTripPlans().add(tripPlan);
+        originalUserPlans.addTripPlan(tripPlan);
         userPlansRepository.save(originalUserPlans);
     }
 

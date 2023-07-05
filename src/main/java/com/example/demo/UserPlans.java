@@ -12,6 +12,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class UserPlans implements UserDetails {
     private Role role = Role.USER;
     private List<TripPlan> tripPlans;
 
-    public UserPlans(String username, String password) {
+    public UserPlans(String username, String password, List<TripPlan> tripPlans) {
         this.username = username;
         this.password = password;
         this.tripPlans = List.of();
@@ -54,6 +55,14 @@ public class UserPlans implements UserDetails {
     @Override
     public String getPassword() {
         return password;
+    }
+
+    public void addTripPlan (TripPlan tripPlan) {
+        if (this.tripPlans == null) {
+            this.tripPlans = new ArrayList<TripPlan>();
+        }
+
+        this.tripPlans.add(tripPlan);
     }
 
     @Override

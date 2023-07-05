@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -37,8 +38,8 @@ public class UserPlansController {
 
     @PostMapping
     public ResponseEntity<UserPlans> createUserPlans(@RequestBody Map<String, String> payload) {
-
-        return new ResponseEntity<UserPlans>(userPlansService.createUserPlans(payload.get("username"), payload.get("password")), HttpStatus.CREATED);
+        List<TripPlan> tripPlans = new ArrayList<TripPlan>();
+        return new ResponseEntity<UserPlans>(userPlansService.createUserPlans(payload.get("username"), payload.get("password"), tripPlans), HttpStatus.CREATED);
     }
 
     @PutMapping("/update/{id}")

@@ -2,7 +2,9 @@ package com.example.demo.auth;
 
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -24,7 +26,19 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> authenticate (
             @RequestBody AuthenticationRequest request
     ) {
-        return ResponseEntity.ok(service.authenticate(request));
+
+        try {
+            return ResponseEntity.ok(service.authenticate(request));
+        } catch (Exception e) {
+            System.out.println("Authentication failed: " + e.getMessage());
+            if (e.getMessage().equals("Bad credentials")) {
+
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            } else {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+
     }
 
 }
